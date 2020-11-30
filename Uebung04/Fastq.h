@@ -133,7 +133,11 @@ std::istream& operator>>(std::istream& strm,
         if (c < 63) {
             seq[i] = Alphabet::DNA::Characters::N;
         }
+        reader.getSequence().getQValues().push_back(c);
         i++;
+        if (i >= reader.getSequence().size()) {
+            throw ParsingException("too many q values");
+        }
     }
 	while ((char) strm.peek() == '\n') strm.get();
 	return strm;
