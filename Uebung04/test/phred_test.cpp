@@ -17,17 +17,19 @@ using namespace Alphabet;
 TEST(Fastq, writer)
 {
     Sequence<DNA> Dnaseq;
-    Dnaseq.push_back(DNA::Characters::T);
-    Dnaseq.push_back(DNA::Characters::A);
-    Dnaseq.push_back(DNA::Characters::C);
+    for (int i = 0; i < 25; i++) {
+        Dnaseq.push_back(DNA::Characters::T);
+    }
     Dnaseq.setComment("test");
     Sequence<DNA>& seq = Dnaseq;
     const Sequence<DNA> cseq = seq;
     SequenceFastqWriter<DNA> writer (cseq);
-    for (int i = 0; i < 3; i++) {
+    std::string qvalstr;
+    for (int i = 0; i < 25; i++) {
         seq.getQValues().push_back('a'); 
+        qvalstr.push_back('a');
     }
-    std::string qvalstr = "aaa\n";
+    qvalstr.push_back('\n');
     std::string str = "@test\n" + seq.toString() + "\n" + "+test\n" + qvalstr ;
     std::stringstream ss;
     ss << toFastq(seq);

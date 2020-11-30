@@ -81,15 +81,22 @@ std::ostream& operator<<(std::ostream& strm,
                          const SequenceFastqWriter<Alpha>& writer)
 {
 	Sequence<Alpha> seq_ = writer.getSequence();
-            strm << "@" << seq_.getComment() << std::endl;
             auto iter = seq_.begin();
             int s = 0;
             for (; iter != seq_.end(); iter++) {
-                if (*iter == Alphabet::DNA::Characters::N) {
+                if (*iter == Alphabet::DNA::Characters::N ) {
                     break;
                 }
                 s++;
-                strm << Alphabet::DNA::toChar(*iter);
+            }
+            if (s < 25 ) return strm;
+            strm << "@" << seq_.getComment() << std::endl;
+            auto iter2 = seq_.begin();
+            for (; iter2 != seq_.end(); iter2++) {
+                if (*iter2 == Alphabet::DNA::Characters::N) {
+                    break;
+                }
+                strm << Alphabet::DNA::toChar(*iter2);
             }
             strm << std::endl;
             strm << "+" << seq_.getComment() << std::endl;
