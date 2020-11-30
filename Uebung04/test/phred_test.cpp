@@ -24,14 +24,14 @@ TEST(Fastq, writer)
     Sequence<DNA>& seq = Dnaseq;
     const Sequence<DNA> cseq = seq;
     SequenceFastqWriter<DNA> writer (cseq);
-    auto qval = seq.getQValues();
-    std::string qvalstr;
-    for (int i = 0; i < qval.size(); i++) {
-        qvalstr.push_back(qval[i]);
+    for (int i = 0; i < 3; i++) {
+        seq.getQValues().push_back('a'); 
     }
-    std::string str = "@test\n" + seq.toString() + "\n" + "+\n" + qvalstr ;
+    std::string qvalstr = "aaa\n";
+    std::string str = "@test\n" + seq.toString() + "\n" + "+test\n" + qvalstr ;
     std::stringstream ss;
-    ss << writer;
+    ss << toFastq(seq);
+    std::cout << ss.str() << std::endl;
     ASSERT_EQ(0, str.compare(ss.str()));
 
 }
