@@ -59,7 +59,7 @@ template <typename Alpha> class Sequence
 	/**
 	 * Default constructor.
 	 */
-	Sequence<Alphabet>(): storage_(), comment_(), qvalues_(){}
+	Sequence<Alphabet>(): storage_(), qvalues_(), comment_(){}
 
 	/**
 	 * Returns a string representing the sequence.

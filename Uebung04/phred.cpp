@@ -27,7 +27,10 @@ int main(int argc, char* argv[])
 			return 1;
 		} else {
 			while (in_file.good()) {
-                //einlesen ausgeben
+                Sequence<DNA> seq1;
+                Sequence<DNA>& seq = seq1;
+                in_file >> fromFastq(seq);
+                out_file << toFastq(seq);
             }
             in_file.close();
             out_file.close();
