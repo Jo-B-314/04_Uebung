@@ -1,6 +1,6 @@
 
-#ifndef BIOINFOI_FASTA_H
-#define BIOINFOI_FASTA_H
+#ifndef BIOINFOI_FASTQ_H
+#define BIOINFOI_FASTQ_H
 
 #include "Sequence.h"
 #include "ParsingException.h"
@@ -89,7 +89,7 @@ std::ostream& operator<<(std::ostream& strm,
                     break;
                 }
                 s++;
-                strm << iter->toChar;
+                strm << Alphabet::DNA::toChar(*iter);
             }
             strm << std::endl;
             strm << "+" << seq_.getComment() << std::endl;
@@ -109,7 +109,7 @@ std::istream& operator>>(std::istream& strm,
 	std::string comment;
 	char c;
 	strm >> c;
-	if (c == '>') {
+	if (c == '@') {
 		//there is a comment -> we read the header line
 		getline(strm, comment);
 		reader.getSequence().setComment(comment);
@@ -121,13 +121,24 @@ std::istream& operator>>(std::istream& strm,
 		throw ParsingException("Header but no Sequence");
 	}
 	Sequence<Alpha>& seq = reader.getSequence();
-	for (; (iter != eos); iter++) {
+	for (; (*iter != '+') && (iter != eos); iter++) {
 		seq.push_back(Alpha::toCharacter(*iter));
-		while ((char) strm.peek() == '\n') {
-			strm.get();
-		}
-		if ((char) strm.peek() == '>') break;
 	}
+	if (iter == eos) throw ParsingException("no line 3");
+    getline(strm, comment);
+    int i = 0;
+    while (((char) strm.peek() != '\n') && strm.good()) {
+        strm >> c;
+        // c< 63 <=> P > 0.001
+        if (c < 63) {
+            seq[i] = Alphabet::DNA::Characters::N;
+        }
+        reader.getSequence().getQValues().push_back(c);
+        i++;
+        if (i >= reader.getSequence().size()) {
+            throw ParsingException("too many q values");
+        }
+    }
 	while ((char) strm.peek() == '\n') strm.get();
 	return strm;
 }
