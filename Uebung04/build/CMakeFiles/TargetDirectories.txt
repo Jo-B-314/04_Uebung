@@ -1,0 +1,15 @@
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/CMakeFiles/test.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/CMakeFiles/sequence.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/CMakeFiles/phred.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/CMakeFiles/edit_cache.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/CMakeFiles/rebuild_cache.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/gtest/CMakeFiles/test.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/gtest/CMakeFiles/gtest_main.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/gtest/CMakeFiles/edit_cache.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/gtest/CMakeFiles/gtest.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/gtest/CMakeFiles/rebuild_cache.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/test/CMakeFiles/test.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/test/CMakeFiles/test_driver.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/test/CMakeFiles/phred_test.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/test/CMakeFiles/rebuild_cache.dir
+/home/stud/s8liroll/Bioinfo1/04_Uebung/Uebung04/build/test/CMakeFiles/edit_cache.dir
