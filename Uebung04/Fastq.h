@@ -128,16 +128,19 @@ std::istream& operator>>(std::istream& strm,
     getline(strm, comment);
     int i = 0;
     while (((char) strm.peek() != '\n') && strm.good()) {
-        strm >> c;
+        if (i >= reader.getSequence().size()) {
+            throw ParsingException("too many q values");
+        }
+        c = strm.get();
+        if (c < 33 || c > 75) {
+            throw ParsingException("wrong q value");
+        }
         // c< 63 <=> P > 0.001
         if (c < 63) {
             seq[i] = Alphabet::DNA::Characters::N;
         }
         reader.getSequence().getQValues().push_back(c);
         i++;
-        if (i >= reader.getSequence().size()) {
-            throw ParsingException("too many q values");
-        }
     }
 	while ((char) strm.peek() == '\n') strm.get();
 	return strm;
