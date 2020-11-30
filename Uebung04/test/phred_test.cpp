@@ -33,5 +33,20 @@ TEST(Fastq, writer)
     ss << toFastq(seq);
     std::cout << ss.str() << std::endl;
     ASSERT_EQ(0, str.compare(ss.str()));
+}
 
+TEST(Fastq, reader)
+{
+     Sequence<DNA> Dnaseq;
+    Dnaseq.push_back(DNA::Characters::T);
+    Dnaseq.push_back(DNA::Characters::A);
+    Dnaseq.push_back(DNA::Characters::C);
+    Dnaseq.setComment("test");
+    const Sequence<DNA>& seq = Dnaseq;
+    std::string stream_str = "@test\n" + seq.toString() + "+test\n";
+    Sequence<DNA> emptyseq;
+	SequenceFastqReader<DNA> reader (emptyseq);
+    std::stringstream ss (stream_str);
+    ss >> fromFastq(emptyseq);
+	ASSERT_EQ(0, seq.toString().compare(reader.getSequence().toString()));
 }
